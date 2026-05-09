@@ -98,6 +98,9 @@
         }
     </style>
 </head>
+<audio id="BackgroundMusic" autoplay loop>
+    <source src="background.mp3" type="audio/mpeg">
+</audio>
 <body>
 
     <div class="Container">
@@ -107,6 +110,22 @@
     </div>
 
     <script>
+        const BackgroundMusic = document.getElementById("BackgroundMusic");
+        BackgroundMusic.volume = 0.3;
+
+        function StartMusic() {
+            BackgroundMusic.play().catch(() => {});
+            
+            document.removeEventListener("click", StartMusic);
+            document.removeEventListener("mousemove", StartMusic);
+            document.removeEventListener("keydown", StartMusic);
+            document.removeEventListener("touchstart", StartMusic);
+        }
+
+        document.addEventListener("click", StartMusic);
+        document.addEventListener("mousemove", StartMusic);
+        document.addEventListener("keydown", StartMusic);
+        document.addEventListener("touchstart", StartMusic);
         const PhraseDictionary = [
             "Самая умная",
             "Самая красивая",
