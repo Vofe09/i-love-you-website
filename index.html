@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(
+                -45deg,
+                #3f1d38,
+                #6a2c70,
+                #b83b5e,
+                #8a3f6b
+            );
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            overflow: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .Container {
+            width: 80%;
+            max-width: 900px;
+            padding: 50px;
+            text-align: center;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+            color: white;
+            animation: fadeIn 1.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+        }
+
+        #Phrase {
+            font-size: 2rem;
+            min-height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            line-height: 1.5;
+            transition: opacity 0.8s ease;
+        }
+
+        .Footer {
+            margin-top: 30px;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            #Phrase {
+                font-size: 1.4rem;
+            }
+
+            .Container {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="Container">
+        <h1>Для меня ты..</h1>
+        <div id="Phrase">Микросхемы тужаться...</div>
+        <div class="Footer">Люблю тебя</div>
+    </div>
+
+    <script>
+        const PhraseDictionary = [
+            "Самая умная",
+            "Самая красивая",
+            "Самая милая",
+            "Самая добрая",
+            "Самая заботливая",
+            "Самая стойкая",
+            "Самая сильная",
+            "Самая трудолюбивая",
+            "Самая любимая",
+            "Самая родная"
+        ];
+
+        const PhraseElement = document.getElementById("Phrase");
+
+        function ShowRandomPhrase() {
+            PhraseElement.style.opacity = 0;
+
+            setTimeout(() => {
+                const RandomIndex = Math.floor(Math.random() * PhraseDictionary.length);
+                PhraseElement.textContent = PhraseDictionary[RandomIndex];
+                PhraseElement.style.opacity = 1;
+            }, 500);
+        }
+
+        ShowRandomPhrase();
+
+        setInterval(() => {
+            ShowRandomPhrase();
+        }, 2500);
+    </script>
+
+</body>
+</html>
